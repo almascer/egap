@@ -270,13 +270,23 @@ const Categories = ({ categories, content }: { categories: Category[], content: 
               <div key={category.id} className="embla__slide w-[320px] min-w-[320px] flex-shrink-0 pr-6">
                 <Link
                   to={`/category/${category.id}`}
-                  className="group relative h-32 w-full flex items-center justify-center bg-white border border-black/5 rounded-custom hover:border-brand-navy transition-all overflow-hidden shadow-lg"
+                  className="group flex flex-col"
                 >
-                  {category.imageUrl && (
-                    <img src={`${category.imageUrl}${category.imageUrl.includes('?') ? '' : '?q=70&w=400&fit=crop'}`} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                  )}
-                  <div className="absolute inset-0 bg-brand-navy/50 group-hover:bg-brand-navy/70 transition-colors"></div>
-                  <span className="text-white font-black text-[11px] tracking-[4px] uppercase text-center px-4 relative z-10">{category.name}</span>
+                  <div className="relative h-40 w-full overflow-hidden rounded-custom shadow-lg border border-black/5 bg-white mb-4">
+                    {category.imageUrl && (
+                      <img 
+                        src={`${category.imageUrl}${category.imageUrl.includes('?') ? '' : '?q=70&w=400&fit=crop'}`} 
+                        loading="lazy" 
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                      />
+                    )}
+                  </div>
+                  <div className="flex flex-col">
+                    <h3 className="text-brand-navy font-black text-xs tracking-[2px] uppercase mb-1 group-hover:text-brand-accent transition-colors">{category.name}</h3>
+                    <p className="text-gray-400 text-[9px] font-bold uppercase tracking-widest line-clamp-2">
+                      {category.description || "Découvrez notre gamme de pièces haute performance."}
+                    </p>
+                  </div>
                 </Link>
               </div>
             ))}

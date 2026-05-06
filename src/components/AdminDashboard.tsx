@@ -665,6 +665,7 @@ const CategoriesManager = () => {
       const { id, ...dataToSave } = editing;
       const cleanData = {
         name: dataToSave.name || '',
+        description: dataToSave.description || '',
         imageUrl: dataToSave.imageUrl || '',
         slug: dataToSave.slug || ''
       };
@@ -735,6 +736,10 @@ const CategoriesManager = () => {
               <div className="space-y-2">
                 <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Slug (URL)</label>
                 <input placeholder="slug-category" className="w-full p-3 bg-background-off border-none rounded-custom font-bold text-xs" value={editing.slug} onChange={e => setEditing({...editing, slug: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '-')})} />
+              </div>
+              <div className="space-y-2">
+                <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Description</label>
+                <textarea rows={2} placeholder="Description courte..." className="w-full p-3 bg-background-off border-none rounded-custom font-bold text-xs resize-none" value={editing.description} onChange={e => setEditing({...editing, description: e.target.value})} />
               </div>
               <div className="space-y-2">
                 <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-2">Image de la Catégorie</label>

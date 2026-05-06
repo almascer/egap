@@ -218,7 +218,13 @@ app.use(express.static(distPath));
 // Handle React Router - Send all other requests to index.html
 app.get('*', (req, res) => {
   if (!req.path.startsWith('/api')) {
-    res.sendFile(path.join(distPath, 'index.html'));
+    const indexPath = path.join(distPath, 'index.html');
+    res.sendFile(indexPath, (err) => {
+      if (err) {
+        // If dist/index.html is missing, we are likely in dev mode
+        res.status(404).json({ error: 'Production assets not found. Use dev mode.' });
+      }
+    });
   }
 });
 
